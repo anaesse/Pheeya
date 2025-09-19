@@ -8,198 +8,575 @@ defineOptions({
 </script>
 
 <template>
-  <Head title="Simplify Authentication, Focus on Shipping | Mellow"></Head>
-  <section class="mx-4 mt-20">
-    <h1 class="mb-4 text-center text-4xl font-bold text-brand md:text-5xl">
-      Simplify Authentication, Focus on Shipping 🚀
-    </h1>
-    <p class="mx-auto max-w-3xl text-center text-xl text-gray-600">
-      Mellow handles user management, so you can build what matters.
-    </p>
-  </section>
-  <section class="px-4 py-12 md:mx-auto md:w-10/12 md:px-8 md:py-16">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <a
-        href="https://marketplace.visualstudio.com/items?itemName=Sails.sails-vscode"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group block rounded-lg bg-gradient-to-b from-brand-50/10 to-white p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-      >
-        <h3 class="mb-2 text-xl font-semibold text-brand">
-          Official VS Code extension
-        </h3>
-        <p class="mb-4 text-gray-600">
-          Install the official Sails VS Code extension to supercharge your
-          development experience.
-        </p>
-        <button
-          class="mt-2 rounded-lg border border-brand px-4 py-2 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white"
-        >
-          Install Extension
-        </button>
-      </a>
+  <Head title="Pheeya - Handcrafted Beads & Digital Artistry"></Head>
 
-      <a
-        href="https://sailsjs.com/documentation"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group block rounded-lg bg-gradient-to-b from-brand-50/10 to-white p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-      >
-        <h3 class="mb-2 text-xl font-semibold text-brand">
-          The Boring JavaScript Stack Docs
-        </h3>
-        <p class="mb-4 text-gray-600">
-          Official documentation for The Boring JavaScript Stack.
-        </p>
-        <button
-          class="mt-2 rounded-lg border border-brand px-4 py-2 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white"
-        >
-          Read Docs
+  <!-- Navigation -->
+  <nav class="nav fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+    <div class="nav-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="nav-brand flex items-center space-x-3">
+          <h1 class="logo text-2xl font-bold text-charcoal">Pheeya</h1>
+          <span class="tagline text-sm text-gray-500 hidden sm:block">Crafted with Code & Soul</span>
+        </div>
+        <ul class="nav-menu hidden md:flex space-x-8">
+          <li><a href="#collections" class="nav-link text-charcoal hover:text-coral transition-colors">Collections</a></li>
+          <li><a href="#about" class="nav-link text-charcoal hover:text-coral transition-colors">About</a></li>
+          <li><a href="#process" class="nav-link text-charcoal hover:text-coral transition-colors">Process</a></li>
+          <li><Link href="/login" class="nav-link text-charcoal hover:text-coral transition-colors">Login</Link></li>
+          <li><Link href="/signup" class="nav-link cta-link bg-coral text-white px-6 py-2 rounded-full hover:bg-coral-600 transition-colors">Shop</Link></li>
+        </ul>
+        <button class="mobile-menu-toggle md:hidden flex flex-col space-y-1">
+          <span class="w-6 h-0.5 bg-charcoal"></span>
+          <span class="w-6 h-0.5 bg-charcoal"></span>
+          <span class="w-6 h-0.5 bg-charcoal"></span>
         </button>
-      </a>
-      <a
-        href="https://sailscasts.com/chat"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group block rounded-lg bg-gradient-to-b from-brand-50/10 to-white p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-      >
-        <h3 class="mb-2 text-xl font-semibold text-brand">
-          Sailscasts Discord
-        </h3>
-        <p class="mb-4 text-gray-600">
-          Join the community to discuss Sails.js and get help. Connect with
-          fellow developers and stay updated.
-        </p>
-        <button
-          class="mt-2 rounded-lg border border-brand px-4 py-2 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white"
-        >
-          Join Community
-        </button>
-      </a>
+      </div>
+    </div>
+  </nav>
 
-      <a
-        href="https://github.com/sailscastshq/boring-stack"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group block rounded-lg bg-gradient-to-b from-brand-50/10 to-white p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-      >
-        <h3 class="mb-2 text-xl font-semibold text-brand">
-          Star on GitHub ⭐️
-        </h3>
-        <p class="mb-4 text-gray-600">
-          Give The Boring JavaScript Stack a star on GitHub.
-        </p>
-        <button
-          class="mt-2 rounded-lg border border-brand px-4 py-2 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white"
-        >
-          Star Project
-        </button>
-      </a>
-      <a
-        href="https://sailscasts.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group block rounded-lg bg-gradient-to-b from-brand-50/10 to-white p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-      >
-        <h3 class="mb-2 text-xl font-semibold text-brand">Sailscasts</h3>
-        <p class="mb-4 text-gray-600">
-          Learn Sails.js and The Boring JavaScript Stack through video tutorials
-          and courses.
-        </p>
-        <button
-          class="mt-2 rounded-lg border border-brand px-4 py-2 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white"
-        >
-          Start Learning
-        </button>
-      </a>
+  <!-- Hero Section -->
+  <section class="hero pt-20">
+    <div class="hero-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="hero-content grid lg:grid-cols-2 gap-12 items-center py-16">
+        <div class="hero-text space-y-8">
+          <span class="hero-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r from-coral/10 to-sage/10 text-coral border border-coral/20">
+            ✨ Handcrafted Excellence
+          </span>
+          <h1 class="hero-title text-5xl lg:text-7xl font-bold leading-tight">
+            Where <span class="gradient-text bg-gradient-to-r from-coral to-sage bg-clip-text text-transparent">Code Meets</span><br>
+            <span class="craft-text text-charcoal">Craft</span>
+          </h1>
+          <p class="hero-description text-xl text-gray-600 leading-relaxed max-w-lg">
+            Personal beads crafted with the precision of a developer and the soul of a musician. 
+            Each piece tells a story of digital artistry meeting ancient craft.
+          </p>
+          <div class="hero-actions flex flex-col sm:flex-row gap-4">
+            <button class="btn btn-primary bg-coral text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-coral-600 transition-all hover-lift">
+              Explore Collections
+            </button>
+            <button class="btn btn-secondary border-2 border-sage text-sage px-8 py-3 rounded-full text-lg font-medium hover:bg-sage hover:text-white transition-colors flex items-center gap-2">
+              <span class="play-icon">▶</span>
+              Watch Process
+            </button>
+          </div>
+          <div class="hero-stats flex items-center space-x-8 pt-4">
+            <div class="stat text-center">
+              <span class="stat-number text-2xl font-bold text-charcoal">500+</span>
+              <span class="stat-label block text-sm text-gray-600">Unique Pieces</span>
+            </div>
+            <div class="stat text-center">
+              <span class="stat-number text-2xl font-bold text-charcoal">100%</span>
+              <span class="stat-label block text-sm text-gray-600">Handmade</span>
+            </div>
+            <div class="stat text-center">
+              <span class="stat-number text-2xl font-bold text-charcoal">50+</span>
+              <span class="stat-label block text-sm text-gray-600">Happy Clients</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual relative">
+          <div class="bead-showcase relative">
+            <!-- Animated bead elements -->
+            <div class="bead bead-1 absolute w-16 h-16 rounded-full bg-gradient-to-br from-coral to-coral-600 shadow-lg animate-float" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+            <div class="bead bead-2 absolute w-12 h-12 rounded-full bg-gradient-to-br from-sage to-sage-600 shadow-lg animate-float" style="top: 30%; right: 10%; animation-delay: 0.5s;"></div>
+            <div class="bead bead-3 absolute w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 shadow-xl animate-float" style="bottom: 40%; left: 30%; animation-delay: 1s;"></div>
+            <div class="bead bead-4 absolute w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg animate-float" style="bottom: 20%; right: 25%; animation-delay: 1.5s;"></div>
+            <div class="bead bead-5 absolute w-18 h-18 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg animate-float" style="top: 60%; left: 50%; animation-delay: 2s;"></div>
+            
+            <!-- Floating elements -->
+            <div class="floating-elements">
+              <div class="code-snippet absolute top-16 right-16 bg-charcoal/90 text-sage px-3 py-2 rounded-lg text-sm font-mono animate-pulse">
+                &lt;craft&gt;
+              </div>
+              <div class="music-note absolute bottom-16 left-16 text-4xl text-coral animate-bounce">♪</div>
+              <div class="sparkle sparkle-1 absolute top-32 left-32 text-2xl text-yellow-400 animate-ping">✨</div>
+              <div class="sparkle sparkle-2 absolute bottom-32 right-32 text-2xl text-purple-400 animate-pulse">✦</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-  <section
-    class="space-y-8 px-4 py-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 md:p-12"
-  >
-    <article>
-      <h3 class="text-xl text-brand md:mb-2 md:text-2xl">Productivity</h3>
-      <p class="font-light text-gray md:text-lg">
-        Let Mellow be the starting point of your next SPA. With authentication
-        and profile management taken care of, you can focus on your core
-        business logic
-      </p>
-    </article>
-    <article>
-      <h3 class="text-xl text-brand md:mb-2 md:text-2xl">
-        Seamless authentication
-      </h3>
-      <p class="font-light text-gray md:text-lg">
-        Experience effortless user authentication and simplified profile
-        management with Mellow, creating a seamless user journey for developers
-        and users.
-      </p>
-    </article>
-    <article>
-      <h3 class="text-xl text-brand md:mb-2 md:text-2xl">Profile management</h3>
-      <p class="font-light text-gray md:text-lg">
-        Let users manage their profiles with ease using Mellow. It offers a
-        simple and secure way to update their name, email address, and password.
-      </p>
-    </article>
+
+  <!-- Featured Collections -->
+  <section class="collections bg-white py-20" id="collections">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header text-center mb-16">
+        <h2 class="section-title text-4xl font-bold text-charcoal mb-4">Featured Collections</h2>
+        <p class="section-description text-xl text-gray-600 max-w-2xl mx-auto">Each collection inspired by a different aspect of my creative journey</p>
+      </div>
+      <div class="collections-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Primary Card -->
+        <div class="collection-card primary-card group hover-lift bg-white rounded-2xl overflow-hidden shadow-lg">
+          <div class="card-image relative">
+            <div class="placeholder-image gradient-bg-1 h-64 bg-gradient-to-br from-purple-400 via-pink-400 to-coral flex items-center justify-center">
+              <div class="image-overlay">
+                <span class="collection-icon text-4xl">🎵</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content p-6">
+            <h3 class="card-title text-xl font-semibold text-charcoal mb-2">Rhythmic Resonance</h3>
+            <p class="card-description text-gray-600 mb-4">Beads inspired by musical frequencies and the rhythm of code compilation</p>
+            <div class="card-footer flex items-center justify-between">
+              <span class="price text-lg font-bold text-coral">From $45</span>
+              <button class="btn-icon w-10 h-10 bg-coral/10 hover:bg-coral hover:text-white rounded-full flex items-center justify-center transition-colors">→</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="collection-card group hover-lift bg-white rounded-2xl overflow-hidden shadow-lg">
+          <div class="card-image relative">
+            <div class="placeholder-image gradient-bg-2 h-64 bg-gradient-to-br from-blue-400 via-teal-400 to-sage flex items-center justify-center">
+              <div class="image-overlay">
+                <span class="collection-icon text-4xl">💻</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content p-6">
+            <h3 class="card-title text-xl font-semibold text-charcoal mb-2">Digital Dreams</h3>
+            <p class="card-description text-gray-600 mb-4">Binary patterns translated into tactile art</p>
+            <div class="card-footer flex items-center justify-between">
+              <span class="price text-lg font-bold text-coral">From $35</span>
+              <button class="btn-icon w-10 h-10 bg-coral/10 hover:bg-coral hover:text-white rounded-full flex items-center justify-center transition-colors">→</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="collection-card group hover-lift bg-white rounded-2xl overflow-hidden shadow-lg">
+          <div class="card-image relative">
+            <div class="placeholder-image gradient-bg-3 h-64 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 flex items-center justify-center">
+              <div class="image-overlay">
+                <span class="collection-icon text-4xl">🎨</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content p-6">
+            <h3 class="card-title text-xl font-semibold text-charcoal mb-2">Artisan's Algorithm</h3>
+            <p class="card-description text-gray-600 mb-4">Traditional techniques meet modern precision</p>
+            <div class="card-footer flex items-center justify-between">
+              <span class="price text-lg font-bold text-coral">From $55</span>
+              <button class="btn-icon w-10 h-10 bg-coral/10 hover:bg-coral hover:text-white rounded-full flex items-center justify-center transition-colors">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
-  <section class="bg-[#F9FAFB] px-4 py-8 md:flex md:space-x-64 md:p-12">
-    <h2 class="flex-grow-0 text-xl text-black md:w-2/12 md:text-3xl">
-      Frequently asked questions
-    </h2>
-    <section class="flex-1">
-      <details class="relative border-b border-[#D7D7D7] py-4">
-        <summary class="text-gray md:text-lg">What is Mellow?</summary>
-        <p class="text-sm text-black md:text-lg">
-          Mellow is the default starter template for The Boring JavaScript
-          Stack. It provides authentication and profile management out of the
-          box.
-        </p>
-      </details>
-      <details class="relative border-b border-[#D7D7D7] py-4">
-        <summary class="text-gray md:text-lg">
-          How do I get started with Mellow?
-        </summary>
-        <p class="text-sm text-black md:text-lg">
-          Chances are you already have scaffolded a new project using Mellow if
-          you are seeing this. Just open up the project in your editor and start
-          coding away.
-        </p>
-      </details>
-      <details class="relative border-b border-[#D7D7D7] py-4">
-        <summary class="text-gray md:text-lg">Can I customize Mellow?</summary>
-        <p class="text-sm text-black md:text-lg">
-          For sure! All the code in Mellow is open source so you can copy and
-          paste and customize to your heart's content.
-        </p>
-      </details>
-    </section>
+
+  <!-- About Section -->
+  <section class="about bg-warm-gray py-20" id="about">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="about-content grid lg:grid-cols-2 gap-16 items-center">
+        <div class="about-text space-y-6">
+          <span class="section-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-coral/10 text-coral">About Me</span>
+          <h2 class="section-title text-4xl font-bold text-charcoal leading-tight">
+            The Intersection of<br>
+            <span class="gradient-text bg-gradient-to-r from-coral to-sage bg-clip-text text-transparent">Art & Algorithm</span>
+          </h2>
+          <p class="about-description text-lg text-gray-700 leading-relaxed">
+            I'm a software developer by day, bead artist by passion, and musician by soul. 
+            My journey into bead crafting began as a way to create something tangible in a world of digital abstractions.
+          </p>
+          <p class="about-description text-lg text-gray-700 leading-relaxed">
+            Each bead is meticulously crafted using techniques I've refined through years of practice, 
+            with the same attention to detail I bring to writing clean, elegant code.
+          </p>
+          <div class="skills flex flex-wrap gap-2 pt-4">
+            <div class="skill-tag px-4 py-2 bg-white rounded-full text-sm font-medium text-charcoal shadow-sm">Handcrafting</div>
+            <div class="skill-tag px-4 py-2 bg-white rounded-full text-sm font-medium text-charcoal shadow-sm">Software Development</div>
+            <div class="skill-tag px-4 py-2 bg-white rounded-full text-sm font-medium text-charcoal shadow-sm">Music Production</div>
+            <div class="skill-tag px-4 py-2 bg-white rounded-full text-sm font-medium text-charcoal shadow-sm">Design</div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="profile-card bg-white rounded-2xl p-8 shadow-xl">
+            <div class="profile-image mb-6">
+              <div class="placeholder-profile w-24 h-24 bg-gradient-to-br from-coral to-sage rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">P</div>
+            </div>
+            <div class="profile-info text-center">
+              <h4 class="text-xl font-bold text-charcoal mb-2">Koo (Pheeya Creator)</h4>
+              <p class="text-gray-600">Developer • Artist • Musician</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process bg-white py-20" id="process">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-header text-center mb-16">
+        <h2 class="section-title text-4xl font-bold text-charcoal mb-4">The Creative Process</h2>
+        <p class="section-description text-xl text-gray-600 max-w-2xl mx-auto">From concept to completion, every bead follows a journey of precision and passion</p>
+      </div>
+      <div class="process-steps grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="process-step text-center space-y-4">
+          <div class="step-number w-16 h-16 bg-coral rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto">01</div>
+          <div class="step-content">
+            <h3 class="text-xl font-semibold text-charcoal mb-2">Design & Inspiration</h3>
+            <p class="text-gray-600">Drawing from music, code patterns, and natural forms to create unique designs</p>
+          </div>
+        </div>
+        <div class="process-step text-center space-y-4">
+          <div class="step-number w-16 h-16 bg-sage rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto">02</div>
+          <div class="step-content">
+            <h3 class="text-xl font-semibold text-charcoal mb-2">Material Selection</h3>
+            <p class="text-gray-600">Carefully choosing premium materials that resonate with the intended aesthetic</p>
+          </div>
+        </div>
+        <div class="process-step text-center space-y-4">
+          <div class="step-number w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto">03</div>
+          <div class="step-content">
+            <h3 class="text-xl font-semibold text-charcoal mb-2">Crafting</h3>
+            <p class="text-gray-600">Hand-shaping each bead with tools and techniques refined over years of practice</p>
+          </div>
+        </div>
+        <div class="process-step text-center space-y-4">
+          <div class="step-number w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto">04</div>
+          <div class="step-content">
+            <h3 class="text-xl font-semibold text-charcoal mb-2">Quality Assurance</h3>
+            <p class="text-gray-600">Testing and refining with the same rigor I apply to debugging code</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta bg-gradient-to-r from-coral/5 to-sage/5 py-20">
+    <div class="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="cta-content space-y-8">
+        <h2 class="cta-title text-4xl font-bold text-charcoal">Ready to Own a Piece of Digital Craft?</h2>
+        <p class="cta-description text-xl text-gray-600 max-w-2xl mx-auto">Join a community of creators who appreciate the fusion of technology and traditional artistry</p>
+        <div class="cta-actions flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="btn btn-primary btn-large bg-coral text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-coral-600 transition-all hover-lift">Browse Collections</button>
+          <button class="btn btn-secondary btn-large border-2 border-sage text-sage px-10 py-4 rounded-full text-lg font-medium hover:bg-sage hover:text-white transition-colors">Commission a Piece</button>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
-<style>
-details > summary {
-  list-style: none;
-}
-summary::-webkit-details-marker {
-  display: none;
+
+<style scoped>
+/* CSS Variables */
+:root {
+  --color-primary: #FF6B6B;
+  --color-secondary: #95D5B2;
+  --color-accent: #ec4899;
+  --color-charcoal: #2D3748;
+  --gradient-primary: linear-gradient(135deg, #FF6B6B 0%, #95D5B2 100%);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-summary::after {
-  position: absolute;
-  right: 0px;
-  content: ' +';
+/* Enhanced Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
-@keyframes details-show {
-  from {
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
     opacity: 0;
-    transform: var(--details-translate, translateY(-0.5em));
   }
 }
 
-details[open] > *:not(summary) {
-  animation: details-show 150ms ease-in-out;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
-details[open] summary:after {
-  content: ' −';
+
+.animate-pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.animate-ping {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+/* Navigation Enhancements */
+.nav {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #95D5B2 100%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Enhanced Hero Section */
+.hero {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(149, 213, 178, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #FF6B6B 0%, #95D5B2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Enhanced Beads */
+.bead {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bead:hover {
+  transform: scale(1.1) !important;
+  z-index: 10;
+}
+
+/* Floating Elements */
+.code-snippet {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  backdrop-filter: blur(4px);
+}
+
+/* Enhanced Cards */
+.collection-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.collection-card:hover {
+  transform: translateY(-12px) rotateX(5deg);
+  box-shadow: var(--shadow-xl);
+}
+
+.primary-card {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.02) 0%, rgba(149, 213, 178, 0.02) 100%);
+  border: 2px solid rgba(255, 107, 107, 0.1);
+}
+
+/* Image overlays */
+.image-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.collection-card:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Button Enhancements */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn-icon {
+  transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+  transform: translateX(4px);
+}
+
+/* Profile Card */
+.profile-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.placeholder-profile::before {
+  content: '👨‍💻';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}
+
+/* Process Steps */
+.process-step {
+  transition: all 0.3s ease;
+  background: rgba(247, 250, 252, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.process-step:hover {
+  background: white;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.step-number {
+  background: linear-gradient(135deg, #FF6B6B 0%, #95D5B2 100%);
+  display: inline-flex !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+  
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bead-showcase {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Notification styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #10b981;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 9999;
+  max-width: 300px;
+  font-family: inherit;
+  font-weight: 500;
 }
 </style>
