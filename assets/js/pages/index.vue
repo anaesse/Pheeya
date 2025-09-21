@@ -1,9 +1,254 @@
 <script setup>
-import { Head } from '@inertiajs/vue3'
+import { Head, Link } from '@inertiajs/vue3'
 import AppLayout from '@/layouts/AppLayout.vue'
+import { onMounted, ref } from 'vue'
 
 defineOptions({
   layout: AppLayout
+})
+
+const mobileMenuActive = ref(false)
+const nav = ref(null)
+
+const toggleMobileMenu = () => {
+  mobileMenuActive.value = !mobileMenuActive.value
+}
+
+const smoothScroll = (targetId) => {
+  const targetElement = document.getElementById(targetId)
+  if (targetElement) {
+    const offsetTop = targetElement.offsetTop - 80
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth'
+    })
+  }
+}
+
+const showNotification = (message, type = 'info') => {
+  const notification = document.createElement('div')
+  notification.className = `notification notification-${type}`
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#10b981' : '#6366f1'};
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 9999;
+    max-width: 300px;
+    font-family: inherit;
+    font-weight: 500;
+  `
+  notification.textContent = message
+  
+  document.body.appendChild(notification)
+  
+  setTimeout(() => {
+    notification.style.transform = 'translateX(0)'
+  }, 100)
+  
+  setTimeout(() => {
+    notification.style.transform = 'translateX(100%)'
+    setTimeout(() => notification.remove(), 300)
+  }, 3000)
+}
+
+const createRippleEffect = (event, button) => {
+  const ripple = document.createElement('span')
+  const rect = button.getBoundingClientRect()
+  const size = Math.max(rect.width, rect.height)
+  const x = event.clientX - rect.left - size / 2
+  const y = event.clientY - rect.top - size / 2
+  
+  ripple.style.cssText = `
+    position: absolute;
+    width: ${size}px;
+    height: ${size}px;
+    left: ${x}px;
+    top: ${y}px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+  `
+  
+  button.style.position = 'relative'
+  button.style.overflow = 'hidden'
+  button.appendChild(ripple)
+  
+  setTimeout(() => ripple.remove(), 600)
+}
+
+onMounted(() => {
+  // Navigation scroll effect
+  let lastScrollTop = 0
+  const navElement = nav.value
+  
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    
+    if (navElement) {
+      if (scrollTop > 50) {
+        navElement.style.background = 'rgba(255, 255, 255, 0.98)'
+        navElement.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+      } else {
+        navElement.style.background = 'rgba(255, 255, 255, 0.95)'
+        navElement.style.boxShadow = 'none'
+      }
+      
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        navElement.style.transform = 'translateY(-100%)'
+      } else {
+        navElement.style.transform = 'translateY(0)'
+      }
+    }
+    lastScrollTop = scrollTop
+  }
+  
+  window.addEventListener('scroll', handleScroll)
+  
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  }
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1'
+        entry.target.style.transform = 'translateY(0)'
+        
+        if (entry.target.classList.contains('collection-card')) {
+          const cards = entry.target.parentElement.children
+          Array.from(cards).forEach((card, index) => {
+            setTimeout(() => {
+              card.style.opacity = '1'
+              card.style.transform = 'translateY(0)'
+            }, index * 100)
+          })
+        }
+        
+        if (entry.target.classList.contains('process-step')) {
+          const steps = entry.target.parentElement.children
+          Array.from(steps).forEach((step, index) => {
+            setTimeout(() => {
+              step.style.opacity = '1'
+              step.style.transform = 'translateY(0)'
+            }, index * 150)
+          })
+        }
+      }
+    })
+  }, observerOptions)
+  
+  const animatedElements = document.querySelectorAll('.collections, .about, .process, .cta')
+  animatedElements.forEach(el => {
+    el.style.opacity = '0'
+    el.style.transform = 'translateY(30px)'
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'
+    observer.observe(el)
+  })
+  
+  // Stats counter animation
+  const stats = document.querySelectorAll('.stat-number')
+  const animateStats = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target
+        const finalValue = parseInt(target.textContent)
+        const increment = finalValue / 50
+        let current = 0
+        
+        const updateCounter = () => {
+          if (current < finalValue) {
+            current += increment
+            target.textContent = Math.ceil(current) + (target.textContent.includes('+') ? '+' : '') + (target.textContent.includes('%') ? '%' : '')
+            requestAnimationFrame(updateCounter)
+          } else {
+            target.textContent = target.dataset.originalValue || target.textContent
+          }
+        }
+        
+        if (!target.dataset.originalValue) {
+          target.dataset.originalValue = target.textContent
+          target.textContent = '0'
+          updateCounter()
+        }
+      }
+    })
+  }
+  
+  const statsObserver = new IntersectionObserver(animateStats, {
+    threshold: 0.5
+  })
+  
+  stats.forEach(stat => {
+    statsObserver.observe(stat)
+  })
+  
+  // Parallax effect
+  const handleParallax = () => {
+    const scrolled = window.pageYOffset
+    const parallaxElements = document.querySelectorAll('.floating-elements')
+    
+    parallaxElements.forEach(element => {
+      const speed = 0.5
+      element.style.transform = `translateY(${scrolled * speed}px)`
+    })
+  }
+  
+  window.addEventListener('scroll', handleParallax)
+  
+  // Enhanced bead animations
+  const beads = document.querySelectorAll('.bead')
+  beads.forEach((bead, index) => {
+    setInterval(() => {
+      const randomX = (Math.random() - 0.5) * 10
+      const randomY = (Math.random() - 0.5) * 10
+      bead.style.transform = `translate(${randomX}px, ${randomY}px)`
+    }, 3000 + (index * 500))
+  })
+  
+  // Konami code easter egg
+  let konamiCode = []
+  const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA']
+  
+  const handleKeydown = (e) => {
+    konamiCode.push(e.code)
+    if (konamiCode.length > konamiSequence.length) {
+      konamiCode.shift()
+    }
+    
+    if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+      document.body.style.filter = 'hue-rotate(180deg)'
+      showNotification('🎉 Developer mode activated! Nice coding skills!', 'success')
+      
+      setTimeout(() => {
+        document.body.style.filter = 'none'
+      }, 3000)
+      
+      konamiCode = []
+    }
+  }
+  
+  document.addEventListener('keydown', handleKeydown)
+  
+  console.log('🎨 Pheeya.com loaded with love, code, and craft! 🎵')
+  console.log('Built with modern web technologies and artistic passion.')
+  
+  // Cleanup on unmount
+  return () => {
+    window.removeEventListener('scroll', handleScroll)
+    window.removeEventListener('scroll', handleParallax)
+    document.removeEventListener('keydown', handleKeydown)
+  }
 })
 </script>
 
@@ -11,24 +256,24 @@ defineOptions({
   <Head title="Pheeya - Handcrafted Beads & Digital Artistry"></Head>
 
   <!-- Navigation -->
-  <nav class="nav fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+  <nav ref="nav" class="nav fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 transition-all duration-300">
     <div class="nav-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4">
         <div class="nav-brand flex items-center space-x-3">
-          <h1 class="logo text-2xl font-bold text-charcoal">Pheeya</h1>
-          <span class="tagline text-sm text-gray-500 hidden sm:block">Crafted with Code & Soul</span>
+          <h1 class="logo text-2xl font-bold bg-gradient-to-r from-coral to-sage bg-clip-text text-transparent">Pheeya</h1>
+          <span class="tagline text-sm text-gray-500 hidden sm:block font-medium tracking-wide uppercase">Crafted with Code & Soul</span>
         </div>
-        <ul class="nav-menu hidden md:flex space-x-8">
-          <li><a href="#collections" class="nav-link text-charcoal hover:text-coral transition-colors">Collections</a></li>
-          <li><a href="#about" class="nav-link text-charcoal hover:text-coral transition-colors">About</a></li>
-          <li><a href="#process" class="nav-link text-charcoal hover:text-coral transition-colors">Process</a></li>
+        <ul class="nav-menu hidden md:flex space-x-8" :class="{ 'active': mobileMenuActive }">
+          <li><a @click="smoothScroll('collections')" href="#collections" class="nav-link text-charcoal hover:text-coral transition-colors cursor-pointer">Collections</a></li>
+          <li><a @click="smoothScroll('about')" href="#about" class="nav-link text-charcoal hover:text-coral transition-colors cursor-pointer">About</a></li>
+          <li><a @click="smoothScroll('process')" href="#process" class="nav-link text-charcoal hover:text-coral transition-colors cursor-pointer">Process</a></li>
           <li><Link href="/login" class="nav-link text-charcoal hover:text-coral transition-colors">Login</Link></li>
           <li><Link href="/signup" class="nav-link cta-link bg-coral text-white px-6 py-2 rounded-full hover:bg-coral-600 transition-colors">Shop</Link></li>
         </ul>
-        <button class="mobile-menu-toggle md:hidden flex flex-col space-y-1">
-          <span class="w-6 h-0.5 bg-charcoal"></span>
-          <span class="w-6 h-0.5 bg-charcoal"></span>
-          <span class="w-6 h-0.5 bg-charcoal"></span>
+        <button @click="toggleMobileMenu" class="mobile-menu-toggle md:hidden flex flex-col space-y-1 transition-all duration-300" :class="{ 'active': mobileMenuActive }">
+          <span class="w-6 h-0.5 bg-charcoal transition-all duration-300"></span>
+          <span class="w-6 h-0.5 bg-charcoal transition-all duration-300"></span>
+          <span class="w-6 h-0.5 bg-charcoal transition-all duration-300"></span>
         </button>
       </div>
     </div>
@@ -51,10 +296,10 @@ defineOptions({
             Each piece tells a story of digital artistry meeting ancient craft.
           </p>
           <div class="hero-actions flex flex-col sm:flex-row gap-4">
-            <button class="btn btn-primary bg-coral text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-coral-600 transition-all hover-lift">
+            <button @click="(e) => { createRippleEffect(e, e.target); smoothScroll('collections') }" class="btn btn-primary bg-coral text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-coral-600 transition-all hover-lift relative overflow-hidden">
               Explore Collections
             </button>
-            <button class="btn btn-secondary border-2 border-sage text-sage px-8 py-3 rounded-full text-lg font-medium hover:bg-sage hover:text-white transition-colors flex items-center gap-2">
+            <button @click="(e) => { createRippleEffect(e, e.target); showNotification('Coming soon! Watch this space for behind-the-scenes content.', 'info') }" class="btn btn-secondary border-2 border-sage text-sage px-8 py-3 rounded-full text-lg font-medium hover:bg-sage hover:text-white transition-colors flex items-center gap-2 relative overflow-hidden">
               <span class="play-icon">▶</span>
               Watch Process
             </button>
@@ -253,8 +498,8 @@ defineOptions({
         <h2 class="cta-title text-4xl font-bold text-charcoal">Ready to Own a Piece of Digital Craft?</h2>
         <p class="cta-description text-xl text-gray-600 max-w-2xl mx-auto">Join a community of creators who appreciate the fusion of technology and traditional artistry</p>
         <div class="cta-actions flex flex-col sm:flex-row gap-4 justify-center">
-          <button class="btn btn-primary btn-large bg-coral text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-coral-600 transition-all hover-lift">Browse Collections</button>
-          <button class="btn btn-secondary btn-large border-2 border-sage text-sage px-10 py-4 rounded-full text-lg font-medium hover:bg-sage hover:text-white transition-colors">Commission a Piece</button>
+          <button @click="(e) => { createRippleEffect(e, e.target); smoothScroll('collections') }" class="btn btn-primary btn-large bg-coral text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-coral-600 transition-all hover-lift relative overflow-hidden">Browse Collections</button>
+          <button @click="(e) => { createRippleEffect(e, e.target); showNotification('Interested in a custom piece? Email hello@pheeya.com to get started!', 'success') }" class="btn btn-secondary btn-large border-2 border-sage text-sage px-10 py-4 rounded-full text-lg font-medium hover:bg-sage hover:text-white transition-colors relative overflow-hidden">Commission a Piece</button>
         </div>
       </div>
     </div>
