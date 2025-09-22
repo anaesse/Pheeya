@@ -609,7 +609,7 @@ onMounted(() => {
               <div class="placeholder-profile w-24 h-24 bg-gradient-to-br from-coral to-sage rounded-full mx-auto flex items-center justify-center text-white text-2xl font-bold">P</div>
             </div>
             <div class="profile-info text-center">
-              <h4 class="text-xl font-bold text-charcoal mb-2">Koo (Pheeya Creator)</h4>
+              <h4 class="text-xl font-bold text-charcoal mb-2">S.Peace (Pheeya Creator)</h4>
               <p class="text-gray-600">Developer • Artist • Musician</p>
             </div>
           </div>
