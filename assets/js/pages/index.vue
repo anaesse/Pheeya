@@ -314,7 +314,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Head title="Pheeya — Creating at the Intersection of Code, Music & Beads"></Head>
+  <Head title="Pheeya — blending logic and art to create what movies people."></Head>
 
   <!-- Navigation -->
   <nav ref="nav" class="nav fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100 transition-all duration-300">
@@ -354,10 +354,8 @@ onMounted(() => {
           <span class="hero-badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r from-coral/10 to-sage/10 text-coral border border-coral/20">
             ✨ Multi-Dimensional Creator
           </span>
-          <h1 class="hero-title text-5xl lg:text-7xl font-serif font-bold leading-tight">
-            <span class="text-charcoal">Pheeya</span> —<br>
-            <span class="gradient-text bg-gradient-to-r from-coral to-sage bg-clip-text text-transparent">Creating at the Intersection</span><br>
-            <span class="text-charcoal">of Code, Music & Beads</span>
+          <h1 class="hero-title gradient-text bg-gradient-to-r from-coral to-sage bg-clip-text text-transparent text-5xl lg:text-7xl font-serif font-bold leading-tight">
+             I craft stories in beads, code and Sound.
           </h1>
           <p class="hero-description text-xl text-gray-600 leading-relaxed max-w-lg">
             Software developer by day, musician by passion, and artisan by heart. I create beautiful experiences across three worlds — from elegant code to handcrafted jewelry to soulful melodies.
